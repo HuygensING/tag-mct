@@ -23,9 +23,7 @@ class DotFactory {
                 is TAGNode.TAGTextNode -> node.nodeString()
                 is TAGNode.TAGMarkupNode -> node.nodeString()
             }
-
     }
-
 
 }
 
