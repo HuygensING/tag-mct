@@ -1,10 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+group = "nl.knaw.huygens.tag"
+version = "1.0-SNAPSHOT"
+
 plugins {
     kotlin("jvm") version "1.4.0"
+    `maven-publish`
 }
-group = "nl.knaw.huygens.alexandria.alexandria"
-version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -20,6 +22,24 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.6.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")
+}
+
+publishing {
+    repositories {
+        maven {
+            url = uri("$buildDir/repo")
+        }
+    }
+
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "$group"
+            artifactId = "tag-mct"
+            version = "$version"
+
+            from(components["java"])
+        }
+    }
 }
 
 tasks.withType<KotlinCompile>() {
