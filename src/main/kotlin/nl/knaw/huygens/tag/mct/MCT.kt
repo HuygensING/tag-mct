@@ -41,7 +41,7 @@ sealed class TAGNode {
     }
 }
 
-data class TAGEdge(val colors: List<String>) {
+data class TAGEdge(val colors: Set<String>) {
     override fun equals(other: Any?): Boolean =
         this === other
 

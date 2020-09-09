@@ -17,14 +17,7 @@ class MCTTest {
             |}!]
             |[tagml>[book>[title>Foo Bar<title][chapter>[l>Lorem ipsum dolar amacet.<l]<chapter]<book]<tagml]
             |""".trimMargin())
-        when (val result = parse(tagml)) {
-            is TAGMLParseResult.TAGMLParseSuccess -> {
-                val mct = result.tokens.asMCT()
-                val mctDot = mct.asDot()
-                println(mctDot)
-            }
-            is TAGMLParseResult.TAGMLParseFailure -> fail(result.errors.joinToString("\n"))
-        }
+        assertParsesToMCT(tagml)
     }
 
     @Test
@@ -37,14 +30,7 @@ class MCTTest {
             |}!]
             |[tagml|+X,+Y>[x|X>Romeo [y|Y>loves<x] Juliet<y]<tagml]
             |""".trimMargin())
-        when (val result = parse(tagml)) {
-            is TAGMLParseResult.TAGMLParseSuccess -> {
-                val mct = result.tokens.asMCT()
-                val mctDot = mct.asDot()
-                println(mctDot)
-            }
-            is TAGMLParseResult.TAGMLParseFailure -> fail(result.errors.joinToString("\n"))
-        }
+        assertParsesToMCT(tagml)
     }
 
     @Test
@@ -57,15 +43,18 @@ class MCTTest {
             |}!]
             |[tagml>[q>To be<-q], wrote Shakespeare, [x a=1][+q>or not to be!<q]<tagml]
             |""".trimMargin())
+        assertParsesToMCT(tagml)
+    }
+
+    private fun assertParsesToMCT(tagml: String) {
         when (val result = parse(tagml)) {
             is TAGMLParseResult.TAGMLParseSuccess -> {
                 val mct = result.tokens.asMCT()
                 val mctDot = mct.asDot()
+                assert(mctDot.isNotEmpty())
                 println(mctDot)
             }
             is TAGMLParseResult.TAGMLParseFailure -> fail(result.errors.joinToString("\n"))
         }
     }
-
 }
-

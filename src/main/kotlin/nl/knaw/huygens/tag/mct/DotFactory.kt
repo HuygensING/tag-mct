@@ -10,10 +10,14 @@ class DotFactory {
             mct.nodes.joinToString("\n") { node ->
                 when (node) {
                     is TAGNode.TAGTextNode -> node.nodeString()
-                    is TAGNode.TAGMarkupNode -> "${node.nodeString()} -> ${
-                        mct.outgoingEdgesOf(node).map { e -> mct.targetsOf(e) }.flatten()
-                            .joinToString { nodeString(it) }
-                    }"
+                    is TAGNode.TAGMarkupNode -> {
+                        val sourceString = node.nodeString()
+                        mct.outgoingEdgesOf(node).joinToString("\n") { edge ->
+                            val edgeString = "-[${edge.colors.joinToString(",")}]->"
+                            val targetsString = mct.targetsOf(edge).joinToString { nodeString(it) }
+                            "$sourceString $edgeString $targetsString"
+                        }
+                    }
                 }
             }
 
@@ -25,5 +29,3 @@ class DotFactory {
     }
 
 }
-
-

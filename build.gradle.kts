@@ -9,8 +9,9 @@ plugins {
 }
 
 repositories {
-    mavenCentral()
+    mavenLocal()
     maven("http://maven.huygens.knaw.nl/repository/")
+    mavenCentral()
 }
 
 dependencies {
@@ -36,7 +37,6 @@ publishing {
             groupId = "$group"
             artifactId = "tag-mct"
             version = "$version"
-
             from(components["java"])
         }
     }
