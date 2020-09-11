@@ -1,7 +1,7 @@
 package nl.knaw.huygens.tag.mct
 
-import nl.knaw.huc.di.tag.tagml.TAGMLParseResult
-import nl.knaw.huc.di.tag.tagml.parse
+import nl.knaw.huygens.tag.tagml.TAGMLParseResult
+import nl.knaw.huygens.tag.tagml.parse
 import org.junit.jupiter.api.Test
 import kotlin.test.fail
 

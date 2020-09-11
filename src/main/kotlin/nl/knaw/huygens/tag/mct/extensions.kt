@@ -1,7 +1,7 @@
 package nl.knaw.huygens.tag.mct
 
-import nl.knaw.huc.di.tag.tagml.TAGMLToken
-import nl.knaw.huc.di.tag.tagml.TAGMLToken.*
+import nl.knaw.huygens.tag.tagml.TAGMLToken
+import nl.knaw.huygens.tag.tagml.TAGMLToken.*
 import nl.knaw.huygens.tag.mct.TAGNode.TAGMarkupNode
 import nl.knaw.huygens.tag.mct.TAGNode.TAGTextNode
 
