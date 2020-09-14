@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
     implementation("nl.knaw.huygens.tag:tagml:0.560.3")
+    implementation("org.apache.commons:commons-text:1.8")
 
     testImplementation(kotlin("test-junit5"))
     testImplementation("org.assertj:assertj-core:3.12.2")

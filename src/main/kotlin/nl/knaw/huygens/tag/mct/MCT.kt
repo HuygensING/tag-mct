@@ -27,16 +27,18 @@ open class MCT<N, E> {
 
     fun targetsOf(edge: E): List<N> = targetNodes.getOrDefault(edge, listOf())
 
+    fun sourceOf(edge: E): N = sourceNode[edge]!!
+
 }
 
 class TAGMCT : MCT<TAGNode, TAGEdge>()
 
-sealed class TAGNode {
-    class TAGTextNode(val content: String) : TAGNode() {
+sealed class TAGNode(val id: Long) {
+    class TAGTextNode(id: Long, val content: String) : TAGNode(id) {
         override fun toString(): String = "Text($content)"
     }
 
-    class TAGMarkupNode(val name: String) : TAGNode() {
+    class TAGMarkupNode(id: Long, val name: String, val layers: Set<String>) : TAGNode(id) {
         override fun toString(): String = "Markup($name)"
     }
 }
