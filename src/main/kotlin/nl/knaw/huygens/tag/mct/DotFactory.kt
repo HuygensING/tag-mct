@@ -4,7 +4,6 @@ import org.apache.commons.text.StringEscapeUtils
 import java.lang.String.format
 import java.util.*
 
-
 fun TAGNode.TAGTextNode.nodeString(): String = """(${this.content.replace("\n", "\\n")})"""
 fun TAGNode.TAGMarkupNode.nodeString(): String = "[${this.name}]"
 
@@ -141,7 +140,6 @@ class DotFactory {
                 "%s  m%d [color=%s;label=<%s>]\n%s",
                 pre, tagMarkupNode.id, color, tagMarkupNode.name, post
             )
-
         }
 
         private fun getLayerColor(layerName: String): String =
