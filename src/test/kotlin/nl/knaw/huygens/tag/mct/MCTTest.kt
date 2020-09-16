@@ -46,6 +46,21 @@ class MCTTest {
         assertParsesToMCT(tagml)
     }
 
+    @Test
+    fun mct_TH_export() {
+        val tagml = ("""
+            |[!{
+            |  ":ontology": {
+            |    "root": "tagml"
+            |  }
+            |}!]
+            |[tagml>[q>To be<-q], wrote Shakespeare, [x a=1][+q>or not to be!<q]<tagml]
+            |""".trimMargin())
+        assertParsesToMCT(tagml)
+        fail("HERE!")
+    }
+
+
     private fun assertParsesToMCT(tagml: String) {
         when (val result = parse(tagml)) {
             is TAGMLParseResult.TAGMLParseSuccess -> {
