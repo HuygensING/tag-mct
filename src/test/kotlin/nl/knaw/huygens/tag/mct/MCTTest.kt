@@ -34,6 +34,19 @@ class MCTTest {
     }
 
     @Test
+    fun mct_with_overlap2() {
+        val tagml = ("""
+            |[!{
+            |  ":ontology": {
+            |    "root": "tagml"
+            |  }
+            |}!]
+            |[tagml>Stuart,[A|+f>John,[B>Paul,<A|f]George,<B]Ringo<tagml]
+            |""".trimMargin())
+        assertParsesToMCT(tagml)
+    }
+
+    @Test
     fun mct_with_discontinuity() {
         val tagml = ("""
             |[!{

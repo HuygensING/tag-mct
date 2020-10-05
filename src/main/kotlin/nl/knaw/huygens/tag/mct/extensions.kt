@@ -35,16 +35,16 @@ private fun handleTextToken(
     openMarkup: MutableMap<String, MutableList<TAGMarkupNode>>,
     idDispenser: Iterator<Long>
 ) {
-//    if (openMarkup.values.any { it.isNotEmpty() }) { // after closing of root markup, there should be no more texttokens
     val node = TAGTextNode(idDispenser.next(), token.rawContent)
-    for (layer in openMarkup.keys) {
-        mct.addDirectedEdge(
-            TAGEdge(setOf(layer)),
-            openMarkup.getValue(layer).last(),
-            node
-        )
-    }
-//    }
+    openMarkup.keys
+        .filter { openMarkup.getValue(it).isNotEmpty() }
+        .forEach { layer ->
+            mct.addDirectedEdge(
+                TAGEdge(setOf(layer)),
+                openMarkup.getValue(layer).last(),
+                node
+            )
+        }
 }
 
 private fun handleMarkupMilestoneToken(
@@ -53,7 +53,9 @@ private fun handleMarkupMilestoneToken(
     openMarkup: MutableMap<String, MutableList<TAGMarkupNode>>,
     idDispenser: Iterator<Long>
 ) {
-    for (layer in token.layers) {
+    token.layers
+        .filter { openMarkup.getValue(it).isNotEmpty() }
+        .forEach { layer ->
         mct.addDirectedEdge(
             TAGEdge(setOf(layer)),
             openMarkup.getValue(layer).last(),
