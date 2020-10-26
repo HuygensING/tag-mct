@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "nl.knaw.huygens.tag"
-version = "0.1.2"
+version = "0.1.3"
 
 plugins {
     kotlin("jvm") version "1.4.0"
@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation("nl.knaw.huygens.tag:tagml:0.560.3")
+    implementation("nl.knaw.huygens.tag:tagml:0.560.6")
     implementation("org.apache.commons:commons-text:1.8")
 
     testImplementation(kotlin("test-junit5"))
